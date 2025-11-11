@@ -10,9 +10,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 import tensorflow as tf
-data = tf.keras.datasets.fashion_mnist
+import keras
 
-class myCallback(tf.keras.callbacks.Callback):
+data = keras.datasets.fashion_mnist
+
+class myCallback(keras.callbacks.Callback):
   def on_epoch_end(self, epoch, logs={}):
     if(logs.get('accuracy')>0.99):
       print("\nReached 99% accuracy so cancelling training!")
@@ -29,14 +31,14 @@ training_images  = training_images / 255.0
 test_images = test_images.reshape(10000, 28, 28, 1)
 test_images = test_images / 255.0
 
-model = tf.keras.models.Sequential([
-    tf.keras.layers.Conv2D(64, (3, 3), activation='relu', input_shape=(28, 28, 1)),
-    tf.keras.layers.MaxPooling2D(2, 2),
-    tf.keras.layers.Conv2D(64, (3, 3), activation='relu'),
-    tf.keras.layers.MaxPooling2D(2,2),
-    tf.keras.layers.Flatten(),
-    tf.keras.layers.Dense(128, activation=tf.nn.relu),
-    tf.keras.layers.Dense(10, activation=tf.nn.softmax)])
+model = keras.models.Sequential([
+        keras.layers.Conv2D(64, (3, 3), activation='relu', input_shape=(28, 28, 1)),
+        keras.layers.MaxPooling2D(2, 2),
+        keras.layers.Conv2D(64, (3, 3), activation='relu'),
+        keras.layers.MaxPooling2D(2,2),
+        keras.layers.Flatten(),
+        keras.layers.Dense(128, activation=tf.nn.relu),
+        keras.layers.Dense(10, activation=tf.nn.softmax)])
 
 model.compile(optimizer='adam',
               loss='sparse_categorical_crossentropy',
