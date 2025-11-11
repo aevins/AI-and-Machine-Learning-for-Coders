@@ -13,13 +13,12 @@ import urllib.request
 import os
 import zipfile
 import random
-from tensorflow.keras.preprocessing.image import ImageDataGenerator
-from tensorflow.keras import layers
-from tensorflow.keras import Model
-from tensorflow.keras.applications.inception_v3 import InceptionV3
-from tensorflow.keras.optimizers import RMSprop
+from keras.preprocessing.image import ImageDataGenerator
+from keras import layers
+from keras import Model
+from keras.applications.inception_v3 import InceptionV3
+from keras.optimizers import RMSprop
 from shutil import copyfile
-
 
 data_url = "https://download.microsoft.com/download/3/E/1/3E1C3F21-ECDB-4869-8368-6DEBA77B919F/kagglecatsanddogs_3367a.zip"
 data_file_name = "catsdogs.zip"
@@ -43,11 +42,6 @@ try:
     os.mkdir('tmp/cats-v-dogs/testing/dogs')
 except OSError:
     pass
-
-
-import random
-from shutil import copyfile
-
 
 def split_data(SOURCE, TRAINING, TESTING, SPLIT_SIZE):
     files = []
