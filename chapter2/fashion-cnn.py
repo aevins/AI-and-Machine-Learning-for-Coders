@@ -14,14 +14,15 @@ import keras
 
 data = keras.datasets.fashion_mnist
 
-class myCallback(keras.callbacks.Callback):
-  def on_epoch_end(self, epoch, logs={}):
-    if(logs.get('accuracy')>0.99):
-      print("\nReached 99% accuracy so cancelling training!")
-      self.model.stop_training = True
+class MyCallback(keras.callbacks.Callback):
+    """Callback to stop training once accuracy reaches 99%"""
+    def on_epoch_end(self, epoch, logs=None):
+        if logs.get('accuracy')>0.99:
+            print("\nReached 99% accuracy so cancelling training!")
+            self.model.stop_training = True
 
 
-callbacks = myCallback()
+callbacks = MyCallback()
 
 
 (training_images, training_labels), (test_images, test_labels) = data.load_data()
